@@ -48,8 +48,6 @@ for iteration in range (0,monte):
     for i in SNR_for_each_agent:
 
         var= np.random.normal(15,i,size=num_agents)
-        
-        
 
         rho=1
         reg=1
@@ -173,11 +171,6 @@ for j in MSE_matrix:
 #import pdb; pdb.set_trace()
 result_list1 = add_n_lists(sums)
 result_list1=divide_list_by_scalar(monte,result_list1)
-
-
-
-################################################################################################################################################
-
 
 x_03=np.linspace(1,10,10)
 plt.title('NRMSE vs Num of heterogenous agents (gaussian)')
