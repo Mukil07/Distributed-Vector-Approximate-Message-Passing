@@ -27,6 +27,8 @@ def add_n_lists(lists):
 
 def divide_list_by_scalar(scalar, input_list):
     return [element/scalar for element in input_list]
+    
+# For Distributed/Federated VAMP 
 
 MSE_matrix_final=[]
 monte=50
@@ -47,7 +49,7 @@ for iteration in range (0,monte):
     
     MSE_1_correlation=[]
     for correlation in range (num_agents):
-        #print(correlation)
+        
         rho=1
         reg=1
 
@@ -56,11 +58,7 @@ for iteration in range (0,monte):
         M=[]
         y=[]
 
-        #mean and precision of prior 
-
-
         #Denoising
-
         x_hat_1 = [np.random.normal(0.0, 1.0, (N,1))]
         alpha_1 = []
         eta_1 = []
@@ -133,7 +131,6 @@ for iteration in range (0,monte):
         for i in range (num_iterations):
 
             #Denoising Updation 
-            
             temp_g=0
             temp_r=0
             for k in range(num_agents):
@@ -148,6 +145,7 @@ for iteration in range (0,monte):
             eta_1.append(gamma_temp[i]/alpha_1[i])
 
             MSE_f=0
+            
             #LMMSE updation
             for j in range (num_agents):
 
@@ -202,7 +200,7 @@ result_list=divide_list_by_scalar(monte,result_list)
 final_matrix.append(result_list) 
 
 
-################################################################################################################################################
+# For Standard VAMP 
 
 N=200
 M=100
@@ -318,17 +316,7 @@ for i in SNR:
         MSE = (np.mean((np.matmul(A,x_02) - np.matmul(A,x_hat_2))**2)/np.mean(np.matmul(A,x_02)**2))
         print("MSE",MSE)
 
-
-
-
-
-
-
-
 MSE=MSE*np.ones(num_agents)
-
-
-
 
 x_03=np.linspace(1,num_agents,num_agents)
 plt.title('MSE vs Num of correlated agents (gaussian-20dB)')
